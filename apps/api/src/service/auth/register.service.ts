@@ -13,7 +13,7 @@ export const registerService = async (
         });
 
         if(existingUser) {
-            throw new Error('EMail is already Exist')
+            throw new Error('Email is already exist')
         }
 
         const hashedPassword = await hashPassword(password);
