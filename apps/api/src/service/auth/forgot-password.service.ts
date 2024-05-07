@@ -17,14 +17,17 @@ export const forgotPasswordService = async (email: string) => {
       expiresIn: '30m'
     });
 
-    const link = NEXT_BASE_URL + `reset-password?token=${token}`;
+    const link = NEXT_BASE_URL + `/reset-password?token=${token}`;
 
     await transporter.sendMail({
         from: 'Admin',
         to: email,
         subject: 'Link Reset Password',
-        html: `<a herf="${link}" target=""_blank">Reset Password Here</a>`
+        html: `<a href="${link}" target="_blank">Reset Password Here</a>`
     });
+    return{
+        message: 'email reset password has been sent',
+    }
   } catch (error) {
     throw error;
   }
