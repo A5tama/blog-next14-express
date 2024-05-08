@@ -29,8 +29,8 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-8">
               <h3>Home</h3>
-              <h3>Write</h3>
-              <h3>Login</h3>
+              <h3 onClick={()=> router.push('/write')}>Write</h3>
+              <h3 onClick={()=> router.push('/login')}>Login</h3>
               <h3>Register</h3>
             </div>
           )}
