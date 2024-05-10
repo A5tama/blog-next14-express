@@ -70,7 +70,7 @@ const Login = () => {
                   Forgot Password ?
                 </p>
               </div>
-              <Button className="mt-6 w-full">Login</Button>
+              <Button type='submit' className="mt-6 w-full">Login</Button>
             </form>
           </CardContent>
         </Card>

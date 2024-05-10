@@ -74,7 +74,7 @@ const Register = () => {
                 />
                 {/* PASSWORD END */}
               </div>
-              <Button className="mt-6 w-full">Register</Button>
+              <Button type='submit' className="mt-6 w-full">Register</Button>
             </form>
           </CardContent>
         </Card>

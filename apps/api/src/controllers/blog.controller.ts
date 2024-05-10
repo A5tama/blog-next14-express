@@ -1,5 +1,6 @@
 import { createBlogService } from '@/service/blog/create-blog.service';
-import { getBlogService } from '@/service/blog/get-blog-.service';
+import { getBlogService } from '@/service/blog/get-blog.service';
+import { getBlogsService } from '@/service/blog/get-blogs.service';
 import { NextFunction, Request, Response } from 'express';
 
 export class BlogController {
@@ -25,6 +26,23 @@ export class BlogController {
       
       const id = req.params.id;
       const result = await getBlogService(Number(id));
+
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getBlogsController(req: Request, res: Response, next: NextFunction) {
+    try {
+      const query = {
+        take: parseInt(req.query.take as string) || 10,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: (req.query.sortBy as string) || "createdAt",
+        sortOrder: (req.query.sortOrder as string) || "desc",
+        search: (req.query.search as string) || '',
+      }
+      
+      const result = await getBlogsService(query);
 
       return res.status(200).send(result);
     } catch (error) {
