@@ -6,14 +6,13 @@ import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
 import { useEffect, useState } from 'react';
 
 interface IGetBlogsQuery extends IPaginationQueries {
-    search?: string
+  search?: string;
 }
 
 const useGetBlogs = (queries: IGetBlogsQuery) => {
-    const [ data, setData ] = useState<Blog[]>([]);
-    const [meta, setMeta] = useState<IPaginationMeta | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const [data, setData] = useState<Blog[]>([]);
+  const [meta, setMeta] = useState<IPaginationMeta | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getBlogs = async () => {
     try {
@@ -25,16 +24,16 @@ const useGetBlogs = (queries: IGetBlogsQuery) => {
       setMeta(data.meta);
     } catch (error) {
       console.log(error);
-    }finally{
-        setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getBlogs();
-  }, [queries?.page, queries?.search])
+  }, [queries?.page, queries?.search]);
 
-  return { data, meta, isLoading};
+  return { data, meta, isLoading };
 };
 
 export default useGetBlogs;
