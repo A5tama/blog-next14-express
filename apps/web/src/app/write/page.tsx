@@ -106,4 +106,4 @@ const Write = () => {
   );
 };
 
-export default AuthGuard(Write);
+export default AuthGuard(Write) ;
