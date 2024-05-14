@@ -1,6 +1,7 @@
 import { createBlogService } from '@/service/blog/create-blog.service';
 import { getBlogService } from '@/service/blog/get-blog.service';
 import { getBlogsService } from '@/service/blog/get-blogs.service';
+import { updateBlogService } from '@/service/blog/update-blog.service';
 import { NextFunction, Request, Response } from 'express';
 
 export class BlogController {
@@ -23,7 +24,7 @@ export class BlogController {
   async getBlogController(req: Request, res: Response, next: NextFunction) {
     try {
       console.log('execccc');
-      
+
       const id = req.params.id;
       const result = await getBlogService(Number(id));
 
@@ -37,12 +38,31 @@ export class BlogController {
       const query = {
         take: parseInt(req.query.take as string) || 10,
         page: parseInt(req.query.page as string) || 1,
-        sortBy: (req.query.sortBy as string) || "createdAt",
-        sortOrder: (req.query.sortOrder as string) || "desc",
+        sortBy: (req.query.sortBy as string) || 'createdAt',
+        sortOrder: (req.query.sortOrder as string) || 'desc',
         search: (req.query.search as string) || '',
-      }
-      
+      };
+
       const result = await getBlogsService(query);
+
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateBlogController(req: Request, res: Response, next: NextFunction) {
+    try {
+      console.log("isi req files", req.files);
+      console.log('isi req body', req.body);
+      
+
+      const files = req.files as Express.Multer.File[];
+
+      const result = await updateBlogService(
+        Number(req.params.id),
+        req.body,
+        files[0],
+      );
 
       return res.status(200).send(result);
     } catch (error) {
