@@ -1,14 +1,14 @@
 'use client';
 
 import { axiosInstance } from '@/lib/axios';
-import { Blog, IFormCreateBlog } from '@/types/blog.types';
+import { Blog, IFormBlog } from '@/types/blog.types';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { FileWithPath } from 'react-dropzone';
 
 const useCreateBlog = () => {
   const router = useRouter();
-  const createBlog = async (payload: IFormCreateBlog) => {
+  const createBlog = async (payload: IFormBlog) => {
     try {
       const { title, category, content, description, thumbnail, userId } =
         payload;

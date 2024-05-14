@@ -8,7 +8,7 @@ import RichTextEditor from '@/components/RichTextEditor';
 import { Button } from '@/components/ui/button';
 import useCreateBlog from '@/hooks/api/blog/useCreateBlog';
 import { useAppSelector } from '@/redux/hooks';
-import { IFormCreateBlog } from '@/types/blog.types';
+import { IFormBlog } from '@/types/blog.types';
 import { useFormik } from 'formik';
 import { validationSchema } from './validationSchema';
 import AuthGuard from '@/hoc/AuthGuard';
@@ -25,7 +25,7 @@ const Write = () => {
     values,
     errors,
     touched,
-  } = useFormik<IFormCreateBlog>({
+  } = useFormik<IFormBlog>({
     initialValues: {
       title: '',
       category: '',
